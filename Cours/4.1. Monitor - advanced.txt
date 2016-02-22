@@ -1,0 +1,15 @@
+mon = peripheral.wrap("left")
+
+-- on definit la couleur du texte
+mon.setTExtColor(color.red)
+
+-- on definit la couleur du fond
+mon.setBackgroundColor(colors.yellow)
+
+-- Un clear pour changer tout le fond
+mon.clear()
+
+-- on ecrit un petit truc
+mon.setCursorPos(3,3)
+mon.write("hello")
+

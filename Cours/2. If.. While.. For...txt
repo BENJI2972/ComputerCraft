@@ -1,0 +1,29 @@
+== ~= < >
+
+If :
+
+if (blabla) or (blablabla) then
+end
+
+
+
+While :
+
+while Answer ~= Correct do
+end
+
+
+Repeat :
+
+repeat
+  
+until i == 5
+
+
+
+For :
+
+for Variable = Start, End, Interval do
+   --Insert code here
+end
+

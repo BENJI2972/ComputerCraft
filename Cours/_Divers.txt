@@ -1,0 +1,9 @@
+label set <disk drive side> <new label name>
+
+read() 2cris et lit
+read("*") rajoute des étoiles sur ce que l'on écrit
+
+
+term.redirect(mon)
+image = paintutils.loadImage("first")
+paintutils.drawImage(image,1,1)

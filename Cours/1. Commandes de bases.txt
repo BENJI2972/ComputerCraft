@@ -1,0 +1,14 @@
+ls : Liste contenu repertoire
+edit : editer un fichier
+cd : changer de repertoire
+cp : copier
+mv : renommer ou deplacer
+rm : supprimer
+
+Ctrl + T : Terminer un programme
+Ctrl + S : Shutdown
+Ctrl + R : Reboot
+
+label set <disk drive side> <new label name> : Renommer une disquette
+
+Astuce : Un fichier nommer startup s'éxécute automatiquement au démarrage du computer, que ce soit sur disquette ou interne

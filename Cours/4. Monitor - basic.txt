@@ -1,0 +1,13 @@
+mon = peripheral.wrap("left")
+
+-- effacer l'écran
+mon.clear()
+
+-- taille de l'ecriture
+mon.setTextScale(2)
+
+-- position du curseur pour ecrire
+mon.setCursorPos(2,2)
+
+- on ecrit sur le moniteur
+mon.write("Hello !")

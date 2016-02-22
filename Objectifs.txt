@@ -1,0 +1,3 @@
+Créer des installateurs automatiques avec interfaces user-friendly
+
+Adapter l'API détécteur de périphérique au network cable

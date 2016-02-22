@@ -1,0 +1,36 @@
+local direction = 0 --direction
+ 
+-- fonction qui compare et mine, tourne à droite et direction++
+function compare_mine()
+ 
+        local slot = 0
+        local resultat = false
+       
+        for slot=1,3 do
+                turtle.select(slot) -- Selectionne le slot 1 de l'inventaire turtle
+                if turtle.compare() or resultat then
+                        resultat = true
+                end
+        end
+       
+        if resultat == false then
+                turtle.dig()
+        end
+       
+        turtle.turnRight()
+        direction=direction+1
+       
+end
+ 
+turtle.select(16)
+turtle.refuel(1)
+ 
+turtle.digDown() --creuse le bloc dessous
+turtle.down() --descend d'un cran
+ 
+-- ici, direction = 0
+while direction~=4 do
+        --compare et mine, tourne à droite et direction++
+        compare_mine()
+end
+direction=0

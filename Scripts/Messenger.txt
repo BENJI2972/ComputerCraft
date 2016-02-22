@@ -1,0 +1,75 @@
+--Intro
+function intro()
+
+Mx,My = term.getSize()
+Intro = "Welcome to the Messenger App v1.0"
+
+term.setBackgroundColor(colors.black)
+term.setTextColor(colors.white)
+term.clear()
+term.setCursorPos(math.floor(Mx/2 - #Intro/2),2)
+term.write(Intro)
+
+Intro = "This computer is :"
+term.setCursorPos(math.floor(Mx/2 - #Intro/2),4)
+
+Intro = "Receiver  <-      ->  Sender"
+term.setCursorPos(math.floor(Mx/2 - #Intro/2),7)
+
+end
+
+--KeyCapture, Determine type of computer
+
+function rawread()
+while true do
+local sEvent, param = os.pullEvent("key")
+if sEvent == "key" then
+if param == 203 then
+computer = "receiver"
+break
+elseif param == 205 then
+computer = "sender"
+break
+end
+end
+end
+end
+
+--function connect
+
+function connect(sid) --type in
+
+local sides = { "top", "bottom", "left", "right", "front", "back" }
+for i = 1, #sides do
+  if peripheral.isPresent(sides[i]) then
+        if peripheral.getType(sides[i]) == sid then
+          return sides(i)
+	else
+	return 1
+        end
+  end
+end
+
+end
+
+--Receiver
+
+Mx,My = term.getSize()
+Intro = "Welcome to the Messenger App v1.0"
+
+term.setBackgroundColor(colors.black)
+term.setTextColor(colors.white)
+term.clear()
+term.setCursorPos(math.floor(Mx/2 - #Intro/2),2)
+term.write(Intro)
+
+Intro = "Computer Type :"
+term.setCursorPos(3,4)
+
+Intro = "Receiver  <-      ->  Sender"
+term.setCursorPos(math.floor(Mx/2 - #Intro/2),7)
+
+end
+
+
+--Sender

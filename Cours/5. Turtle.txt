@@ -1,0 +1,24 @@
+1. Calculer les emlpacements des puits de forages
+
+2. Se déplacer sur le prochain put de forage
+
+3. Creuser un cran vers le bas
+
+4. Comparer et miner les 4 directions
+
+5. vérifier si le bloc de dessous est de la bedrock
+
+6. Si reponse = false alors étape 3
+
+7. Si réponse = true alors remonter à la surface
+
+8. Dernier puit ? = true alors retour au point de départ
+
+9. Sinon aller au prochain puit (Etape 2)
+
+10. A chaque mineage de bloc test si inventaire est plein. Si oui, alors retour départ pour vider
+inventaire sinon continuer le minage
+
+11. Verigier le niveau de fuel.
+
+12. Utiliser le réseau Rednet

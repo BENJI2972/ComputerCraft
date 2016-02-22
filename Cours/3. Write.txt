@@ -1,0 +1,3 @@
+! Depend on cursor position !
+
+write("You have entered "..Name1.." "..Name2.." "..Name3.." "..Name4.." "..Name5)

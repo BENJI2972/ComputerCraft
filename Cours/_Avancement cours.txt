@@ -1,0 +1,5 @@
+Les tableaux : Array
+
+Fonction calcPlan() pour calcluer le plan de minage.
+
+Fonction déplacement(x,y) pour aller à coordonnées précises.
