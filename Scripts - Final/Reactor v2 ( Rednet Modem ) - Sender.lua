@@ -17,6 +17,7 @@
 	
 	rednet.open(modemSide)
 		
+		
 	function getReactorStatut()
 		
 		while true do
@@ -29,6 +30,7 @@
 		
 	end
 	
+	
 	function sendReactorStatut()
 		
 		while true do
@@ -40,6 +42,7 @@
 		
 	end
 	
+	
 	function getMessage()
 	
 		while true do
@@ -50,6 +53,7 @@
 		end
 	
 	end
+	
 	
 	function setPower()
 		

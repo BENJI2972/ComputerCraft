@@ -1,3 +1,4 @@
+	--	BenAPI v1.0
 
 	function PeriphSide(name,state)
 		
@@ -19,6 +20,7 @@
 	
 	end
 
+	
 	function PeriphSidee(type)	--Connection des peripheriques rentres
 
 			--Preface
@@ -75,3 +77,19 @@
 
 	end
 	
+	
+	function RedstoneSide(name,state)
+	
+			term.setBackgroundColor(colors.black)
+			term.setTextColor(colors.white)
+			term.clear()
+			term.setCursorPos(2,2)
+			term.write("Connecting peripheral "..state)
+			term.setCursorPos(2,4)
+			term.write(name.."  = ")
+			
+			side = read()
+			
+			return side
+	
+	end

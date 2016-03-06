@@ -1,3 +1,5 @@
+	-- Reactor v3.0 Cable Edition
+
 
 	-- API Checker
 
@@ -14,21 +16,25 @@
 	checker = 70
 	allowed = false
 	alarm = false
-	receive = "no"
 	
-	modemSide = BenAPI.PeriphSide("modem","1/3")
-	monitor = peripheral.wrap(BenAPI.PeriphName("monitor","2/3"))
-	battery = peripheral.wrap(BenAPI.PeriphName("battery","3/3"))
+	
+	signalside = BenAPI.RedstoneSide("signalside","1/6")
+--	signalside = BenAPI.PeriphSide("signal","1/3")
+	monitor = peripheral.wrap(BenAPI.PeriphName("monitor","2/6"))
+	battery = peripheral.wrap(BenAPI.PeriphName("battery","3/6"))
 --	alarmSide = BenAPI.PeriphSide("alarm","4/4")
-	alarmSide = "back"
-	
-	rednet.open(modemSide)
-		
+	alarmside = BenAPI.RedstoneSide("alarmside","4/6")
+	reactor = peripheral.wrap(BenAPI.PeriphName("reactor","5/6"))
+	buttonside = BenAPI.RedstoneSide("buttonside","6/6")
+					
 			
 	function manage()
 		
 		while true do
-		
+			
+			reactorOutput = reactor.getEUOutput() * 5
+			reactorStatut = reactor.isActive()
+			
 			maxEnergy = battery.getMaxEnergyStored()
 			storedEnergy = battery.getEnergyStored()
 			
@@ -46,44 +52,19 @@
 				allowed = true
 			end
 			
-			sleep(0.2)
-			
-		end
-	
-	end
-	
-		
-	function sendAllowed()
-		
-		while true do
-		
-		rednet.broadcast(allowed)
-		sleep(0.1)
-		
-		end
-		
-	end
-	
-	
-	function getMessage()
-	
-		while true do
-		
-			id,reactorOutput,reactorStatut = rednet.receive(2)
-			
-			if reactorStatut == nil then
-				receive = false
+			if allowed == true then
+				rs.setOutput(signalside,true)
 			else
-				receive = true
+				rs.setOutput(signalside,false)
 			end
 			
-			sleep(0.1)
-		
+			sleep(0.5)
+			
 		end
 	
 	end
 	
-	
+				
 	function monitoring()
 	
 		-- Initializing monitor
@@ -111,8 +92,6 @@
 		monitor.write("Reactor Output  : ")
 		monitor.setCursorPos(2,13)
 		monitor.write("Statut : ")
-		monitor.setCursorPos(12,13)
-		monitor.write("Receive : ")
 		monitor.setCursorPos(2,14)
 		monitor.write("Alarm : ")
 		
@@ -157,15 +136,6 @@
 					monitor.write(" active  ")
 				end
 				
-				if receive == true then
-					monitor.setCursorPos(22,13)
-					monitor.setBackgroundColor(colors.green)
-					monitor.write("true ")
-				elseif receive == false then
-					monitor.setCursorPos(22,13)
-					monitor.setBackgroundColor(colors.red)
-					monitor.write("false")
-				end
 				
 				if alarm == true then
 					 monitor.setCursorPos(9,14)
@@ -179,7 +149,7 @@
 			
 			end
 		
-		sleep(0.1)
+		sleep(0.3)
 		
 		end
 				
@@ -218,22 +188,22 @@
 	
 	while true do
 	
-		if rs.getInput("bottom") then
+		if rs.getInput(buttonside) then
 			alarm = not(alarm)
 			sleep(2)
 		end
 		
-		if (alarm == true and (  (reactorStatut == true and reactorOutput == 0)  or ( receive == false)  ) )  then
-			rs.setOutput(alarmSide,true)
+		if (alarm == true and   (reactorStatut == true and reactorOutput == 0)   )  then
+			rs.setOutput(alarmside,true)
 		else
-			rs.setOutput(alarmSide,false)
+			rs.setOutput(alarmside,false)
 		end
 		
-		sleep(0.1)
+		sleep(0.5)
 	end
 		
 	
 	end
 	
 	
-	parallel.waitForAll(manage,sendAllowed,getMessage,monitoring,statut,alarm)
+	parallel.waitForAll(manage,monitoring,statut,alarm)
