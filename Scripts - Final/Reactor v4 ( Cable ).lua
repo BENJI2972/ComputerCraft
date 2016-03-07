@@ -1,4 +1,4 @@
-	-- Reactor v3.0 Cable Edition
+	-- Reactor v4.0 Cable Edition
 
 
 	-- API Checker
@@ -19,15 +19,47 @@
 	allowed = false
 	alarm = false
 	
+	file = fs.open("save","r")
 	
-	signalside = BenAPI.RedstoneSide("signalside","1/6")
-	monitor = peripheral.wrap(BenAPI.PeriphName("monitor","2/6"))
-	battery = peripheral.wrap(BenAPI.PeriphName("battery","3/6"))
-	alarmside = BenAPI.RedstoneSide("alarmside","4/6")
-	reactor = peripheral.wrap(BenAPI.PeriphName("reactor","5/6"))
-	buttonside = BenAPI.RedstoneSide("buttonside","6/6")
-					
-			
+	if file == nil then
+	
+		file = fs.open("save","w")
+		
+		signalside = BenAPI.RedstoneSide("signalside","1/6")
+		monitorname = BenAPI.PeriphName("monitor","2/6")
+		batteryname = BenAPI.PeriphName("battery","3/6")
+		alarmside = BenAPI.RedstoneSide("alarmside","4/6")
+		reactorname = BenAPI.PeriphName("reactor","5/6")
+		buttonside = BenAPI.RedstoneSide("buttonside","6/6")
+		
+		monitor = peripheral.wrap(monitorname)
+		battery = peripheral.wrap(batteryname)
+		reactor = peripheral.wrap(reactorname)
+		
+		
+		file.writeLine(signalside)
+		file.writeLine(monitorname)
+		file.writeLine(batteryname)
+		file.writeLine(alarmside)
+		file.writeLine(reactorname)
+		file.writeLine(buttonside)
+		
+		file.close()
+		
+	else
+	
+		signalside = file.readLine()
+		monitor = peripheral.wrap(file.readLine())
+		battery = peripheral.wrap(file.readLine())
+		alarmside = file.readLine()
+		reactor = peripheral.wrap(file.readLine())
+		buttonside = file.readLine()
+		
+		file.close()
+		
+	end
+
+	
 	function manage()
 		
 		while true do
