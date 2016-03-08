@@ -1,8 +1,56 @@
-	mon = peripheral.wrap("bottom")
-	cell = peripheral.wrap("right")
-	disk = peripheral.wrap("left")
+	-- Battery v3 Cable Edition
+	
+	-- API Checker
 
-	maincell = peripheral.wrap("immersiveengineering_capacitorhv_1")
+	if fs.exists("BenAPI") == false then
+		print("Missing BenAPI. closing ..")
+		sleep(2)
+		term.setCursorPos(1,1)
+		term.clear()
+		error()
+	else
+		os.loadAPI("BenAPI")
+	end
+	
+	
+	file = fs.open("save","r")
+	
+	if file == nil then
+	
+		file = fs.open("save","w")
+		
+		monside = BenAPI.RedstoneSide("Monitor","1/4")
+		cellside = BenAPI.RedstoneSide("LoadBattery","2/4")
+		diskside = BenAPI.RedstoneSide("Disk","3/4")
+		maincellname = BenAPI.PeriphName("MainCell","4/4")
+		
+		mon = peripheral.wrap(monside)
+		cell = peripheral.wrap(cellside)
+		disk = peripheral.wrap(diskside)
+		maincell = peripheral.wrap(maincellname)
+		
+		file.writeLine(monside)
+		file.writeLine(cellside)
+		file.writeLine(diskside)
+		file.writeLine(maincellname)
+		
+		file.close()
+	
+	else
+	
+		monside = file.readLine()
+		cellside = file.readLine()
+		diskside = file.readLine()
+		maincell = peripheral.wrap(file.readLine())
+		
+		mon = peripheral.wrap(monside)
+		cell = peripheral.wrap(cellside)
+		disk = peripheral.wrap(diskside)
+		
+		file.close()
+	
+	end
+		
 
 
 	if(cell ~= nil and cell.getEnergyStored() ~= nil) then
