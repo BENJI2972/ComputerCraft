@@ -52,6 +52,7 @@
 	end
 		
 
+		
 
 	if(cell ~= nil and cell.getEnergyStored() ~= nil) then
 	
@@ -114,11 +115,13 @@
 			play = false
 		end
 
+		
 		if maincellPercent<50 then
 			rs.setOutput("back",true)
 		elseif maincellPercent > 75 then
 			rs.setOutput("back",false)
 		end
+		 
 		 
 		 --Monitor write
 		energyper = math.floor(energyper)
